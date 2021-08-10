@@ -1,12 +1,4 @@
-if(CMAKE_HOST_WIN32)
-if(GTEST_ROOT)
-else()
-set(GTEST_ROOT "C:/Program Files/googletest-distribution")
-message("GTEST_ROOT not defined, hinting at ${GTEST_ROOT}")
-endif(GTEST_ROOT)
-endif(CMAKE_HOST_WIN32)
-
-find_package(GTest REQUIRED)
+find_package(GTest)
 
 set(test_SOURCES
     run-all-tests.cpp
@@ -44,10 +36,11 @@ else()
     )
 endif(CMAKE_HOST_WIN32)
 
+
+if(GTest_FOUND)
 add_executable(run-all-tests
     ${test_SOURCES}
 )
-
 target_include_directories(run-all-tests SYSTEM
     PUBLIC ${SNAPCORE_INCLUDE_DIRS}
     PUBLIC ${GLIBCORE_INCLUDE_DIRS}
@@ -57,3 +50,6 @@ target_link_libraries(run-all-tests
     snapcore
     ${GTEST_BOTH_LIBRARIES}
 )
+else()
+message("Google Test is not found on your computer. Skip.")
+endif(GTest_FOUND)
