@@ -55,7 +55,8 @@ target_include_directories(snapadv SYSTEM
     PUBLIC ${SNAPCORE_INCLUDE_DIRS}
     PUBLIC ${GLIBCORE_INCLUDE_DIRS}
 )
-target_link_libraries(snapadv snapcore)
+find_package(OpenMP REQUIRED)
+target_link_libraries(snapadv PRIVATE snapcore OpenMP::OpenMP_CXX)
 
 if(CMAKE_HOST_WIN32)
 target_compile_options(snapadv

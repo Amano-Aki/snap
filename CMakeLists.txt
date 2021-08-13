@@ -9,11 +9,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fPIC -O3 -DNDEBUG -fopenmp -fmax-errors=1 -w")
-    add_compile_options()
+    add_compile_options(-Wall -fPIC -O3 -DNDEBUG -fopenmp -fmax-errors=1 -w)
     link_libraries(rt)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "CYGWIN")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3 -fopenmp -DNDEBUG -D__STDC_LIMIT_MACROS -fmax-errors=1 -w")
+    add_compile_options(-Wall -O3 -fopenmp -DNDEBUG -D__STDC_LIMIT_MACROS -fmax-errors=1 -w)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Some unix functions are assumed to be available in many sources, but not defined on windows.
     # This adds declarations in all sources

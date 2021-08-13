@@ -8,6 +8,9 @@ set_target_properties(snapcore PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(snapcore SYSTEM PUBLIC ${GLIBCORE_INCLUDE_DIRS})
 target_link_libraries(snapcore)
 
+find_package(OpenMP REQUIRED)
+target_link_libraries(snapcore PRIVATE OpenMP::OpenMP_CXX)
+
 if(CMAKE_HOST_WIN32)
 target_compile_options(snapcore
 	PRIVATE /bigobj
