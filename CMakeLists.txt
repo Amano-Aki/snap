@@ -38,6 +38,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 option(BUILD_SNAP_EXECUTABLES "You may want to turn this off if you only use SNAP as a library." ON)
 
+add_compile_definitions(SW_NOABORT)
+
 add_subdirectory(glib-core)
 set(SNAPADV_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/snap-adv")
 set(SNAPADV_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/snap-adv")
